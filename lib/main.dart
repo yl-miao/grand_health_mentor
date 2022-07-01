@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:grand_health_mentor/pages/index.dart';
 import 'package:grand_health_mentor/styles/index.dart';
 import 'package:grand_health_mentor/utils/index.dart';
 import 'package:grand_health_mentor/widgets/index.dart';
-import 'package:updater/updater.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,41 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
       currentIndex = index;
     });
     pageController.jumpToPage(index);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _customizeActions();
-  }
-
-  void _customizeActions() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    if (Platform.isAndroid) {
-      _checkUpdate();
-    }
-  }
-
-  _checkUpdate() async {
-    bool isAvailable = await Updater(
-      context: context,
-      // delay: const Duration(milliseconds: ),
-      url: 'https://zfile.miaoyilin.com/file/1/updater.json',
-      titleText: '请更新软件',
-      backgroundDownload: false,
-      // backgroundDownload: false,
-      allowSkip: false,
-      contentText: '软件更新已发布，请务必更新软件后再使用.',
-      confirmText: '自动更新',
-
-      callBack:
-          (versionName, versionCode, contentText, minSupport, downloadUrl) {
-        debugPrint(versionName);
-        debugPrint(versionCode.toString());
-        debugPrint(contentText);
-      },
-      // controller: controller,
-    ).check();
   }
 
   @override
