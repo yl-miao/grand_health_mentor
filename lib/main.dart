@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final PageController pageController = PageController();
+  final PageController pageController = PageController(initialPage: 0);
   int currentIndex = 0;
 
   void onIndexChanged(int index) {
@@ -39,6 +39,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     pageController.jumpToPage(index);
   }
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _customizeActions();
+  // }
+  //
+  // void _customizeActions() {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   onIndexChanged(currentIndex);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
           physics: const NeverScrollableScrollPhysics(), //不允许左右滑动换页
           controller: pageController,
           onPageChanged: onIndexChanged,
-          children: const [
+          children: [
             AllStudentsPage(),
             LearnPage(),
             AllAdHocsPage(),

@@ -55,7 +55,7 @@ class _AllStudentsPageState extends State<AllStudentsPage> {
   void _customizeActions() async {
     WidgetsFlutterBinding.ensureInitialized();
     if (Platform.isAndroid) {
-      _checkUpdate();
+      await _checkUpdate();
     }
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getString('loggedIn') == 'yes') {
